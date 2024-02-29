@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch';
 import cryptojs from 'crypto-js';
+import fetch from 'isomorphic-fetch';
 import { EntryBlock, EntryBlockModule, EntryHardwareBlockModule } from '../../types/index';
 
 type EntryBlockRegisterSchema = {
@@ -88,9 +88,12 @@ class EntryModuleLoader {
             scriptElement.onload = () => {
                 this.moduleListLite = [name];
                 scriptElement.remove();
+                console.log('로드중');
                 resolve();
+                console.log('로드성공');
             };
             scriptElement.onerror = (e) => {
+                console.log('에러남', e);
                 scriptElement.remove();
                 reject(e);
             };
@@ -98,6 +101,7 @@ class EntryModuleLoader {
             const blobedBlock = new Blob([code], {
                 type: 'text/javascript',
             });
+            console.log('파일', blobedBlock);
             const blobUrl = URL.createObjectURL(blobedBlock);
 
             scriptElement.src = blobUrl;
@@ -327,7 +331,9 @@ Entry.loadLiteExternalModules = async (project = {}) => {
  */
 Entry.loadLiteTestModule = async (file: File, name: string) => {
     const result = await file.text();
+
     await Entry.moduleManager.loadScript(name, result, true);
+
     // Entry.moduleManager.registerHardwareLiteModule(name);
 };
 

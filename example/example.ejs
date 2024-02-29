@@ -16,18 +16,24 @@
     </head>
 
     <body>
-        <section>
-            <input type="file" id="litemodule" />
-            <input type="text" id="litemodulename" />
-            <button style="border: 1px solid black" onclick="handleUpdate()">
-                apply
-            </button>
-            <button style="border: 1px solid black" onclick="changeWorkspaceMode('block')">
-                Block Mode
-            </button>
-            <button style="border: 1px solid black" onclick="changeWorkspaceMode('python')">
-                Python Mode
-            </button>
+        <section style="display: flex; justify-content: space-between; height:35px; padding: 4px 16px;">
+            <div >
+                <!-- <input type="file" id="litemodule" />
+                <input type="text" id="litemodulename" />
+                <button style="border: 1px solid black" onclick="handleUpdate()">
+                    apply
+                </button> -->
+                <button style="padding: 8px; background-color: skyblue; cursor: pointer; border: none;" onClick="postFile()">save</button>
+                <button style="padding: 8px; background-color: blue; color:white; cursor: pointer; border: none;" onClick="loadFile()">load</button>
+    
+              </div>
+    
+            <button style="padding: 8px; background-color: red; cursor: pointer; border: none;" onClick="exportToJSON()">!!채점!!</button>
+          
+
+
+            
+
         </section>
         <div id="workspace"></div>
 
@@ -148,26 +154,55 @@
                 Entry.loadLiteTestModule(file, name);
             }
 
-            function changeWorkspaceMode(mode) {
-                const option = {};
-
-                if (mode === 'block') {
-                    option.boardType = Entry.Workspace.MODE_BOARD;
-                    option.textType = -1;
-                } else {
-                    option.boardType = Entry.Workspace.MODE_VIMBOARD;
-                    option.textType = Entry.Vim.TEXT_TYPE_PY;
-                    option.runType = Entry.Vim.WORKSPACE_MODE;
+            async function postFile(){
+                try{
+                  
+                    var project = Entry.exportProject();
+                    const res = await fetch('http://localhost:5001/upload_entry', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            },
+                        body: JSON.stringify(project),
+                    });
+                    if(!res.ok){
+                        throw new Error('Network res was not ok');
+                    }
+                }catch(error){
+                    console.error('Error:', error);
                 }
 
-                const workspace = Entry.getMainWS();
+            }
 
-                if (workspace) {
-                    workspace.setMode(option);
-                } else {
-                    console.error('entry workspace not found!');
+            async function loadFile(){
+                try{
+                    const res = await fetch('http://localhost:5001/file_entry', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            },
+                    });
+                    if(res.ok){
+                        const result = await res.json();
+                        Entry.clearProject()
+                        Entry.loadProject(result);
+                    }else{
+                        throw new Error('Network res was not ok');
+                    }
+                }catch(error){
+                    console.error('Error:', error);
                 }
             }
+
+            function exportToJSON(){
+                var project = Entry.exportProject();
+                // console.log(project.objects[0].script)
+                window.parent.postMessage(
+                            JSON.stringify(project),
+                            "http://192.168.155.155:5173"
+                        );
+            }
+
         </script>
         <!--main script-->
         <script>
@@ -175,12 +210,17 @@
             $(document).ready(function() {
                 var initOption = {
                     type: 'workspace',
-                    textCodingEnable: true,
+                    textCodingEnable: false, //파이썬 끄기 
+                    sceneEditable:false, //단일 장면으로 사용
+                    objectaddable:false, //오브젝트 추가하기 버튼 isShow 여부 
+                    soundeditable:true, //소리TAB (현재 지원안하는 서비스)
                 };
                 Entry.creationChangedEvent = new Entry.Event(window);
                 Entry.init(document.getElementById('workspace'), initOption);
+                
                 Entry.loadProject();
             });
         </script>
+
     </body>
 </html>

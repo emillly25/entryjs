@@ -10,10 +10,8 @@
         "allowJs": true,
         "baseUrl": "./",
         "typeRoots": ["./types", "./node_modules/@types"],
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "checkJs": false
     },
-    "include": [
-        "src/**/*.ts",
-        "./types/**/*"
-    ]
+    "include": ["src/**/*.ts", "./types/**/*"]
 }

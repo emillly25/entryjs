@@ -1,14 +1,14 @@
 'use strict';
 
-import { Destroyer } from './destroyer/Destroyer';
-import { GEHelper } from '../graphicEngine/GEHelper';
+import AILearning from '../class/AILearning';
+import AIUtilize from '../class/AIUtilize';
 import Expansion from '../class/Expansion';
 import EntryBlockHelper from '../class/helper';
-import AIUtilize from '../class/AIUtilize';
-import AILearning from '../class/AILearning';
-import Extension from '../extensions/extension';
 import CloudVariable from '../extensions/CloudVariable';
+import Extension from '../extensions/extension';
+import { GEHelper } from '../graphicEngine/GEHelper';
 import DataSource from '../util/dataSource';
+import { Destroyer } from './destroyer/Destroyer';
 
 import './utils';
 

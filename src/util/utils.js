@@ -1,14 +1,14 @@
 'use strict';
 
-import { GEHelper } from '../graphicEngine/GEHelper';
-import _uniq from 'lodash/uniq';
-import _intersection from 'lodash/intersection';
-import _clamp from 'lodash/clamp';
-import _round from 'lodash/round';
 import FontFaceOnload from 'fontfaceonload';
+import _clamp from 'lodash/clamp';
+import _intersection from 'lodash/intersection';
+import _round from 'lodash/round';
+import _uniq from 'lodash/uniq';
+import { bignumber, chain } from 'mathjs';
 import DataTable from '../class/DataTable';
 import entryModuleLoader from '../class/entryModuleLoader';
-import { bignumber, chain } from 'mathjs';
+import { GEHelper } from '../graphicEngine/GEHelper';
 import { Scheduler } from './scheduler';
 
 Entry.Utils = {};
@@ -91,6 +91,7 @@ Entry.loadProject = function(project) {
     }
     Entry.start();
     if (this.options.programmingMode) {
+        //파이썬모드
         let mode = this.options.programmingMode;
         if (Entry.Utils.isNumber(mode)) {
             const pMode = mode;
@@ -166,8 +167,11 @@ Entry.exportProject = function(project) {
     if (!Entry.engine.isState('stop')) {
         Entry.engine.toggleStop();
     }
+
     project.objects = Entry.container.toJSON();
+
     const objects = project.objects;
+
     project.scenes = Entry.scene.toJSON();
     project.variables = Entry.variableContainer.getVariableJSON();
     project.messages = Entry.variableContainer.getMessageJSON();

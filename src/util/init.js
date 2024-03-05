@@ -372,11 +372,13 @@ Entry.createDom = function(container, type) {
             container.appendChild(engineContainer);
             const engineView = Entry.createElement('div');
             engineContainer.appendChild(engineView);
+
             this.engineContainer = engineContainer;
             this.engineView = engineView;
             this.engine.generateView(this.engineView, type);
 
             const canvas = _createCanvasElement('entryCanvasWorkspace');
+
             this.engine.mouseView.after(canvas);
 
             canvas.addEventListener('mousewheel', (evt) => {
@@ -406,6 +408,7 @@ Entry.createDom = function(container, type) {
             const containerView = Entry.createElement('div');
             this.propertyPanel.generateView(engineContainer, type);
             this.containerView = containerView;
+
             this.container.generateView(this.containerView);
             this.propertyPanel.addMode('object', this.container);
 
@@ -414,12 +417,17 @@ Entry.createDom = function(container, type) {
 
             const introView = Entry.createElement('div');
             container.appendChild(introView);
+
             this.introView = introView;
+
             this.intro.generateView(this.introView, type);
 
             const playgroundView = Entry.createElement('div');
+            playgroundView.id = 'capture';
             container.appendChild(playgroundView);
+
             this.playgroundView = playgroundView;
+
             this.playground.generateView(this.playgroundView, type);
 
             this.propertyPanel.select('object');

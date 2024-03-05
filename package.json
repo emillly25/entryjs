@@ -55,6 +55,7 @@
         "hammerjs": "^2.0.8",
         "html-webpack-plugin": "^5.5.3",
         "html-webpack-template": "^6.2.0",
+        "html2canvas": "^1.4.1",
         "isomorphic-fetch": "^2.2.1",
         "jest": "^24.9.0",
         "libsvm-js": "^0.2.1",

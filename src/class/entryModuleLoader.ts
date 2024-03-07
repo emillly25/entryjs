@@ -88,12 +88,9 @@ class EntryModuleLoader {
             scriptElement.onload = () => {
                 this.moduleListLite = [name];
                 scriptElement.remove();
-                console.log('로드중');
                 resolve();
-                console.log('로드성공');
             };
             scriptElement.onerror = (e) => {
-                console.log('에러남', e);
                 scriptElement.remove();
                 reject(e);
             };
@@ -101,7 +98,6 @@ class EntryModuleLoader {
             const blobedBlock = new Blob([code], {
                 type: 'text/javascript',
             });
-            console.log('파일', blobedBlock);
             const blobUrl = URL.createObjectURL(blobedBlock);
 
             scriptElement.src = blobUrl;

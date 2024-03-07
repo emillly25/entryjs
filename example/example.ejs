@@ -16,14 +16,7 @@
     </head>
 
     <body>
-        <section style="display: flex; justify-content: space-between; height:35px; padding: 4px 16px;">
-            <div>
-                <button style="padding: 8px; background-color: skyblue; cursor: pointer; border: none;" onClick="postFile()">save</button>
-                <button style="padding: 8px; background-color: blue; color:white; cursor: pointer; border: none;" onClick="loadFile()">load</button>
-            </div>
-            <button style="padding: 8px; background-color: yellowgreen; cursor: pointer; border: none;" onClick="captureImg()">캡쳐</button>
-            <button style="padding: 8px; background-color: red; cursor: pointer; border: none;" onClick="exportToJSON()">!!채점!!</button>
-        </section>
+        <!--main space -->
         <div id="workspace"></div>
 
         <!--language-->
@@ -146,54 +139,8 @@
             }
 
 
-            async function postFile(){
-                try{
-                  
-                    var project = Entry.exportProject();
-                    const res = await fetch('http://localhost:5001/upload_entry', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            },
-                        body: JSON.stringify(project),
-                    });
-                    if(!res.ok){
-                        throw new Error('Network res was not ok');
-                    }
-                }catch(error){
-                    console.error('Error:', error);
-                }
+     
 
-            }
-
-            async function loadFile(){
-                try{
-                    const res = await fetch('http://localhost:5001/file_entry', {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            },
-                    });
-                    if(res.ok){
-                        const result = await res.json();
-                        Entry.clearProject()
-                        Entry.loadProject(result);
-                    }else{
-                        throw new Error('Network res was not ok');
-                    }
-                }catch(error){
-                    console.error('Error:', error);
-                }
-            }
-
-            function exportToJSON(){
-                var project = Entry.exportProject();
-                // console.log(project.objects[0].script)
-                window.parent.postMessage(
-                            JSON.stringify(project),
-                            "http://192.168.155.155:5173"
-                        );
-            }
 
         </script>
         <!--main script-->
@@ -209,8 +156,46 @@
                 };
                 Entry.creationChangedEvent = new Entry.Event(window);
                 Entry.init(document.getElementById('workspace'), initOption);
-                
+
                 Entry.loadProject();
+                window.addEventListener("message", async (event) => {
+                if (event.origin === "http://192.168.155.155:5173") {
+                    if (event.data.type === "init") {
+                        //초기 프로젝트로 로드
+                        const blockData = event.data.blockData;
+                        console.log(
+                            "엔트리: ㅇㅇ 처음 프로젝트 시작이얌",
+                            blockData
+                        );
+
+
+                        if(blockData !==null){
+                            console.log('불러오기 로드')
+                            // Entry.clearProject() 이게 필요한지.. 체크해보기
+                            Entry.loadProject(blockData);
+                        }else{
+                            console.log('찐처음 로드')
+                           
+                        }
+
+                      
+                    }
+                    if (event.data.type === "done") {
+                        //채점
+                        var blockData = Entry.exportProject();
+                        console.log("엔트리: 응그래 다했니 니파일 정보 드림",blockData);
+                        window.parent.postMessage(
+                            {
+                                data: blockData, //jsonData
+                                img: "",
+                            },
+                            "http://192.168.155.155:5173"
+                        );
+                    }
+                }
+            });
+                
+             
             });
         </script>
 

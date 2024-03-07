@@ -159,6 +159,7 @@
 
                 Entry.loadProject();
                 window.addEventListener("message", async (event) => {
+                console.log('부모 도메인',event.origin)
                 if (event.origin === "http://192.168.155.155:5173") {
                     if (event.data.type === "init") {
                         //초기 프로젝트로 로드
@@ -167,8 +168,6 @@
                             "엔트리: ㅇㅇ 처음 프로젝트 시작이얌",
                             blockData
                         );
-
-
                         if(blockData !==null){
                             console.log('불러오기 로드')
                             // Entry.clearProject() 이게 필요한지.. 체크해보기
@@ -184,13 +183,19 @@
                         //채점
                         var blockData = Entry.exportProject();
                         console.log("엔트리: 응그래 다했니 니파일 정보 드림",blockData);
-                        window.parent.postMessage(
+                        const captureDiv = document.getElementById('capture')
+                        html2canvas(captureDiv).then((canvas)=>{
+                            canvas.toBlob(blob=>{
+                                window.parent.postMessage(
                             {
                                 data: blockData, //jsonData
-                                img: "",
+                                img: blob, //blobData
                             },
                             "http://192.168.155.155:5173"
                         );
+                            })
+                        })
+                       
                     }
                 }
             });
@@ -199,29 +204,6 @@
             });
         </script>
 
-        <script>
-            function captureImg(){
-                const captureDiv = document.getElementById('capture')
-               
-                html2canvas(captureDiv).then(canvas => {
-                   canvas.toBlob(async(blob)=>{
-                    const formData = new FormData();
-                    formData.append("capture", blob, "capture.png");
-                    try{
-                        const res = await fetch("http://localhost:5001/capture",{
-                            method: "POST",
-                            body: formData,
-                        })
-                        console.log("캡쳐 res", res);
-                    }catch(error){
-                        console.error('에러임')
-                    }
-                      
-                   })
-                    
-                });
-            }
-        </script>
 
     </body>
 </html>

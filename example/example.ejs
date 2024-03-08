@@ -169,20 +169,31 @@
                             blockData
                         );
                         if(blockData !==null){
-                            console.log('불러오기 로드')
-                            // Entry.clearProject() 이게 필요한지.. 체크해보기
+                            console.log('엔트리: 불러오기 로드')
+                            Entry.clearProject() ;
                             Entry.loadProject(blockData);
                         }else{
-                            console.log('찐처음 로드')
-                           
+                            console.log('엔트리: 찐처음 로드')          
                         }
 
-                      
+                    }
+                    if (event.data.type === "save") {
+                        //임시저장
+                        var blockData = Entry.exportProject();
+                        console.log("엔트리: 응그래 지금까지 한거 파일 드림");
+                        window.parent.postMessage(
+                            {
+                                data: blockData, //jsonData
+                                img: "",
+                                isDone: false,
+                            },
+                            "http://192.168.155.155:5173"
+                        );
                     }
                     if (event.data.type === "done") {
                         //채점
                         var blockData = Entry.exportProject();
-                        console.log("엔트리: 응그래 다했니 니파일 정보 드림",blockData);
+                        console.log("엔트리: 응그래 다했니 니파일 정보 드림");
                         const captureDiv = document.getElementById('capture')
                         html2canvas(captureDiv).then((canvas)=>{
                             canvas.toBlob(blob=>{
@@ -190,6 +201,7 @@
                             {
                                 data: blockData, //jsonData
                                 img: blob, //blobData
+                                isDone: true,
                             },
                             "http://192.168.155.155:5173"
                         );

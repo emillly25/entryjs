@@ -1,7 +1,8 @@
 {
   "entry.css": "/dist/entry.css",
   "entry.js": "/dist/entry.js",
-  "src_playground_blocks_hardware_sync_recursive_.js": "/dist/src_playground_blocks_hardware_sync_recursive_.js",
-  "entry.js.map": "/dist/entry.js.map",
-  "src_playground_blocks_hardware_sync_recursive_.js.map": "/dist/src_playground_blocks_hardware_sync_recursive_.js.map"
+  "entry.min.css": "/dist/entry.min.css",
+  "entry.min.js": "/dist/entry.min.js",
+  "522.js": "/dist/522.4e9b5016b590fd01ccdc.js",
+  "index.html": "/dist/index.html"
 }

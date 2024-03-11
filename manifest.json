@@ -1,8 +1,8 @@
 {
-  "entry.css": "/dist/entry.css",
-  "entry.js": "/dist/entry.js",
-  "entry.min.css": "/dist/entry.min.css",
-  "entry.min.js": "/dist/entry.min.js",
-  "522.js": "/dist/522.4e9b5016b590fd01ccdc.js",
-  "index.html": "/dist/index.html"
+  "entry.css": "./entry.css",
+  "entry.js": "./entry.js",
+  "entry.min.css": "./entry.min.css",
+  "entry.min.js": "./entry.min.js",
+  "522.js": "./522.4e9b5016b590fd01ccdc.js",
+  "index.html": "./index.html"
 }

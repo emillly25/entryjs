@@ -16,6 +16,10 @@
     </head>
 
     <body>
+
+        <section>
+            <button onClick="exportfunc()">export</button>
+        </section>
         <!--main space -->
         <div id="workspace"></div>
 
@@ -137,7 +141,10 @@
                 const name = document.getElementById('litemodulename').value;
                 Entry.loadLiteTestModule(file, name);
             }
-
+            function exportfunc(){
+                var blockData = Entry.exportProject();
+                console.log(JSON.parse(blockData.objects[0].script))
+            }
 
      
 
@@ -157,7 +164,182 @@
                 Entry.creationChangedEvent = new Entry.Event(window);
                 Entry.init(document.getElementById('workspace'), initOption);
 
-                Entry.loadProject();
+                Entry.loadProject({
+  "objects": [
+    {
+      "id": "7y0y",
+      "name": "엔트리봇",
+      "script": "[[{\"id\":\"fw23\",\"x\":53,\"y\":88,\"type\":\"when_run_button_click\",\"params\":[null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},{\"id\":\"i6bt\",\"x\":0,\"y\":0,\"type\":\"ask_and_wait\",\"params\":[{\"id\":\"ebb5\",\"x\":0,\"y\":0,\"type\":\"text\",\"params\":[\"이자(%)를 입력하세요\"],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},{\"id\":\"xi85\",\"x\":0,\"y\":0,\"type\":\"set_variable\",\"params\":[\"h76s\",{\"id\":\"sncm\",\"x\":0,\"y\":0,\"type\":\"get_canvas_input_value\",\"params\":[null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},{\"id\":\"rtls\",\"x\":0,\"y\":0,\"type\":\"set_variable\",\"params\":[\"rb0l\",{\"id\":\"940t\",\"x\":0,\"y\":0,\"type\":\"calc_basic\",\"params\":[{\"id\":\"it4t\",\"x\":0,\"y\":0,\"type\":\"get_variable\",\"params\":[\"h76s\",null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},\"DIVIDE\",{\"id\":\"187p\",\"x\":0,\"y\":0,\"type\":\"number\",\"params\":[\"100\"],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]}],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},{\"id\":\"nx5x\",\"x\":0,\"y\":0,\"type\":\"dialog\",\"params\":[{\"id\":\"uohx\",\"x\":0,\"y\":0,\"type\":\"get_variable\",\"params\":[\"rb0l\",null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]},\"speak\",null],\"statements\":[],\"movable\":null,\"deletable\":1,\"emphasized\":false,\"readOnly\":null,\"copyable\":true,\"assemble\":true,\"extensions\":[]}]]",
+      "objectType": "sprite",
+      "rotateMethod": "free",
+      "scene": "7dwq",
+      "sprite": {
+        "pictures": [
+          {
+            "id": "vx80",
+            "dimension": {
+              "width": 144,
+              "height": 246,
+              "scaleX": 0.5128205128205128,
+              "scaleY": 0.5128205128205128
+            },
+            "fileurl": "./bower_components/entry-js/images/media/entrybot1.svg",
+            "name": "엔트리봇_걷기1",
+            "imageType": "svg"
+          },
+          {
+            "id": "4t48",
+            "dimension": { "width": 144, "height": 246 },
+            "fileurl": "./bower_components/entry-js/images/media/entrybot2.svg",
+            "name": "엔트리봇_걷기2",
+            "imageType": "svg"
+          }
+        ],
+        "sounds": [
+          {
+            "duration": 1.3,
+            "ext": ".mp3",
+            "id": "8el5",
+            "fileurl": "./bower_components/entry-js/images/media/bark.mp3",
+            "name": "강아지 짖는 소리"
+          }
+        ]
+      },
+      "selectedPictureId": "vx80",
+      "lock": false,
+      "entity": {
+        "x": 0,
+        "y": 0,
+        "regX": 72,
+        "regY": 123,
+        "scaleX": 0.5128205128205128,
+        "scaleY": 0.5128205128205128,
+        "rotation": 0,
+        "direction": 90,
+        "width": 144,
+        "height": 246,
+        "font": "undefinedpx ",
+        "visible": true
+      }
+    }
+  ],
+  "scenes": [{ "id": "7dwq", "name": "장면 1" }],
+  "variables": [
+    {
+      "name": "일년 후 금액",
+      "id": "c3x5",
+      "visible": true,
+      "value": 0,
+      "variableType": "variable",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": -218.72483221476512,
+      "y": 40.772894321121356
+    },
+    {
+      "name": "이자율",
+      "id": "rb0l",
+      "visible": true,
+      "value": 0,
+      "variableType": "variable",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": -220.33557046979865,
+      "y": -37.1753008112684
+    },
+    {
+      "name": "한달 후 이자금 계",
+      "id": "0uq6",
+      "visible": true,
+      "value": 0,
+      "variableType": "variable",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": -220.3355704697987,
+      "y": 1.5512825309811973
+    },
+    {
+      "name": "이자",
+      "id": "h76s",
+      "visible": true,
+      "value": "0",
+      "variableType": "variable",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": -218.72483221476517,
+      "y": -72.19073780422566
+    },
+    {
+      "name": "저금 금액",
+      "id": "pyy5",
+      "visible": true,
+      "value": 0,
+      "variableType": "variable",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": -217.11409395973155,
+      "y": -112.26792276901197
+    },
+    {
+      "name": "초시계",
+      "id": "brih",
+      "visible": false,
+      "value": 0,
+      "variableType": "timer",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": 134,
+      "y": -70
+    },
+    {
+      "name": " 대답 ",
+      "id": "1vu8",
+      "visible": true,
+      "value": "0",
+      "variableType": "answer",
+      "isCloud": false,
+      "isRealTime": false,
+      "cloudDate": false,
+      "object": null,
+      "x": 150,
+      "y": -100
+    }
+  ],
+  "messages": [],
+  "functions": [],
+  "tables": [],
+  "speed": 60,
+  "interface": { "canvasWidth": 324, "menuWidth": 258, "object": "7y0y" },
+  "expansionBlocks": [],
+  "aiUtilizeBlocks": [],
+  "hardwareLiteBlocks": [],
+  "externalModules": [],
+  "externalModulesLite": [],
+  "likeCnt": 0,
+  "visit": 0,
+  "isopen": true,
+  "name": "mission01",
+  "isPracticalCourse": false,
+  "parent": "65d000bd0a284e0025e559f9",
+  "origin": "65bf2e9318ddc800259b3d05",
+  "user": "58f0b18c46d3696ceb4a3bb3",
+  "recentLikeCnt": 0,
+  "childCnt": 0,
+  "comment": 0
+}
+);
                 window.addEventListener("message", async (event) => {
                 console.log('부모 도메인',event.origin)
                 if (event.origin === "http://192.168.155.155:5173") {

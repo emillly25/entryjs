@@ -1,15 +1,15 @@
-﻿import HardwareSocketMessageHandler from './hardware/hardwareSocketMessageHandler';
-import HardwareMonitor from './hardware/hardwareMonitor';
+﻿import ExternalProgramLauncher from './hardware/externalProgramLauncher';
 import createHardwarePopup from './hardware/functions/createHardwarePopup';
-import ExternalProgramLauncher from './hardware/externalProgramLauncher';
+import HardwareMonitor from './hardware/hardwareMonitor';
+import HardwareSocketMessageHandler from './hardware/hardwareSocketMessageHandler';
 // eslint-disable-next-line prettier/prettier
-import PopupHelper from './popup_helper';
 import {
-    HardwareMessageData,
-    WebSocketMessage,
     EntryHardwareBlockModule,
+    HardwareMessageData,
     UnknownAny,
+    WebSocketMessage,
 } from '../../types/index';
+import PopupHelper from './popup_helper';
 
 enum HardwareModuleType {
     builtIn = 'builtin',
@@ -103,15 +103,23 @@ export default class Hardware {
     }
 
     openHardwareProgram(args?: { [key: string]: string }) {
-        this._alertUnderVersionUsed().then(() => {
-            this._executeHardware(args);
+        this._executeHardware(args);
 
-            if (!this.socket || !this.socket.connected) {
-                setTimeout(() => {
-                    this._initSocket();
-                }, 1000);
-            }
-        });
+        if (!this.socket || !this.socket.connected) {
+            setTimeout(() => {
+                this._initSocket();
+            }, 1000);
+        }
+        //모달 에러로 삭제
+        // this._alertUnderVersionUsed().then(() => {
+        //     this._executeHardware(args);
+
+        //     if (!this.socket || !this.socket.connected) {
+        //         setTimeout(() => {
+        //             this._initSocket();
+        //         }, 1000);
+        //     }
+        // });
     }
 
     /**

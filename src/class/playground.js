@@ -1962,7 +1962,8 @@ Entry.Playground = class Playground {
                 {
                     text: Lang.Workspace.context_duplicate,
                     callback() {
-                        Entry.playground.addSound(sound, true, true);
+                        const newSound = Entry.playground.object.getSound(sound.id);
+                        Entry.playground.addSound(newSound, true, true);
                     },
                 },
                 {
@@ -2440,6 +2441,9 @@ Entry.Playground = class Playground {
 
     setSound(sound) {
         const objectSound = Entry.container.setSound(sound);
+        if (objectSound?.view) {
+            objectSound.view.sound = objectSound;
+        }
         const soundLengthView = _get(objectSound, 'view.soundLengthView');
         if (soundLengthView) {
             soundLengthView.textContent = `${objectSound.duration} ${Lang.General.second}`;

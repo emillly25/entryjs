@@ -151,5 +151,7 @@ require('./textcoding/static/keyboardCode');
 require('./textcoding/util/console');
 require('./textcoding/util/textCodingUtil');
 
+console.log('엔트리', __webpack_public_path__);
+
 window.Entry = Entry;
 showConsoleBanner();

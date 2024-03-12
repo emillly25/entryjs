@@ -123,7 +123,10 @@ const setDefaultPathsFromOptions = function(options) {
         offlineModulePath,
     } = options;
 
-    Entry.mediaFilePath = `${libDir}/entry-js/images/`;
+    // Entry.mediaFilePath = `${libDir}/entry-js/images/`;
+    Entry.mediaFilePath = 'https://playentry.org/lib/entry-js/images/';
+
+    console.log('미디어PATH', Entry.mediaFilePath);
     Entry.painterBaseUrl = `${libDir}/literallycanvas-mobile/lib/img`;
     Entry.defaultPath = defaultDir;
     Entry.soundPath = soundDir;

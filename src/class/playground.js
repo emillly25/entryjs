@@ -247,18 +247,19 @@ Entry.Playground = class Playground {
         }
 
         // TODO: 백팩(나의보관함) 숨김처리
-        if (!backpackDisable) {
-            const backPackButton = Entry.createElement('div')
-                .addClass('entryPlaygroundBackPackButtonWorkspace')
-                .appendTo(tabButtonView);
-            backPackButton.setAttribute('alt', Lang.Workspace.my_storage);
-            backPackButton.setAttribute('title', Lang.Workspace.my_storage);
+        // ABOOK: 백팩 버튼 숨기기 (아래 주석)
+        // if (!backpackDisable) {
+        //     const backPackButton = Entry.createElement('div')
+        //         .addClass('entryPlaygroundBackPackButtonWorkspace')
+        //         .appendTo(tabButtonView);
+        //     backPackButton.setAttribute('alt', Lang.Workspace.my_storage);
+        //     backPackButton.setAttribute('title', Lang.Workspace.my_storage);
 
-            this.backPackButton_ = backPackButton;
-            backPackButton.bindOnClick(() => {
-                Entry.dispatchEvent('openBackPack');
-            });
-        }
+        //     this.backPackButton_ = backPackButton;
+        //     backPackButton.bindOnClick(() => {
+        //         Entry.dispatchEvent('openBackPack');
+        //     });
+        // }
     }
 
     createBackPackView(backPackView) {
@@ -1961,7 +1962,8 @@ Entry.Playground = class Playground {
                 {
                     text: Lang.Workspace.context_duplicate,
                     callback() {
-                        Entry.playground.addSound(sound, true, true);
+                        const newSound = Entry.playground.object.getSound(sound.id);
+                        Entry.playground.addSound(newSound, true, true);
                     },
                 },
                 {
@@ -2439,6 +2441,9 @@ Entry.Playground = class Playground {
 
     setSound(sound) {
         const objectSound = Entry.container.setSound(sound);
+        if (objectSound?.view) {
+            objectSound.view.sound = objectSound;
+        }
         const soundLengthView = _get(objectSound, 'view.soundLengthView');
         if (soundLengthView) {
             soundLengthView.textContent = `${objectSound.duration} ${Lang.General.second}`;

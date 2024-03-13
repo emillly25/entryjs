@@ -8,6 +8,7 @@ on:
             - develop-hw
             - develop2
             - develop
+            - abook
 
 jobs:
     build-and-deploy:

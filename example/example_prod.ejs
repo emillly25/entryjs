@@ -159,7 +159,7 @@
                     textCodingEnable: false, //파이썬 끄기 
                     sceneEditable:false, //단일 장면으로 사용
                     objectaddable:false, //오브젝트 추가하기 버튼 isShow 여부 
-                    soundeditable:true, //소리TAB (현재 지원안하는 서비스)
+                    soundeditable:false, //소리TAB (현재 지원안하는 서비스)
                 };
                 Entry.creationChangedEvent = new Entry.Event(window);
                 Entry.init(document.getElementById('workspace'), initOption);
@@ -167,7 +167,7 @@
                 Entry.loadProject();
                 window.addEventListener("message", async (event) => {
                 console.log('부모 도메인',event.origin)
-                if (event.origin === "http://192.168.155.155:5173") {
+                if (event.origin === "https://sag-gaia-prod-wapl.tmax-superapp.com") {
                     if (event.data.type === "init") {
                         //초기 프로젝트로 로드
                         const blockData = event.data.blockData;
@@ -194,7 +194,7 @@
                                 img: "",
                                 isDone: false,
                             },
-                            "http://192.168.155.155:5173"
+                            "https://sag-gaia-prod-wapl.tmax-superapp.com"
                         );
                     }
                     if (event.data.type === "done") {
@@ -210,7 +210,7 @@
                                 img: blob, //blobData
                                 isDone: true,
                             },
-                            "http://192.168.155.155:5173"
+                            "https://sag-gaia-prod-wapl.tmax-superapp.com"
                         );
                             })
                         })

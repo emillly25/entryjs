@@ -126,6 +126,7 @@ const { createTooltip, returnEmptyArr, getExpectedData } = require('../command_u
         do() {
             Entry.dispatchEvent('dismissModal');
             Entry.dispatchEvent('openSpriteManager');
+            console.log('오브젝트 추가하기버튼 클릭');
         },
         state: returnEmptyArr,
         log: returnEmptyArr,

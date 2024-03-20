@@ -15,6 +15,7 @@ require('./core/model');
 require('./core/observer');
 require('./core/svg');
 require('core-js/stable/object/values');
+require('entry-tool');
 require('./graphicEngine/FakePIXI');
 require('./css/entry.less');
 require('./class/time_wait');
@@ -150,8 +151,6 @@ require('./textcoding/static/codeMap');
 require('./textcoding/static/keyboardCode');
 require('./textcoding/util/console');
 require('./textcoding/util/textCodingUtil');
-
-console.log('엔트리', __webpack_public_path__);
 
 window.Entry = Entry;
 showConsoleBanner();

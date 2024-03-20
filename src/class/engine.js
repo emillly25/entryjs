@@ -19,6 +19,9 @@ Entry.Engine = class Engine {
         this.attachKeyboardCapture();
 
         const _addEventListener = Entry.addEventListener.bind(Entry);
+        _addEventListener('addObjectButtonClick', () => {
+            console.log('?>>>>>???');
+        });
 
         _addEventListener('canvasClick', () => this.fireEvent('mouse_clicked'));
         _addEventListener('canvasClickCanceled', () => this.fireEvent('mouse_click_cancled'));

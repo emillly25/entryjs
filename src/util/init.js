@@ -4,6 +4,7 @@ import AILearning from '../class/AILearning';
 import AIUtilize from '../class/AIUtilize';
 import Expansion from '../class/Expansion';
 import EntryBlockHelper from '../class/helper';
+import EntryModalHelper from '../class/entryModalHelper';
 import CloudVariable from '../extensions/CloudVariable';
 import Extension from '../extensions/extension';
 import { GEHelper } from '../graphicEngine/GEHelper';
@@ -124,6 +125,8 @@ const setDefaultPathsFromOptions = function(options) {
     } = options;
 
     Entry.mediaFilePath = `${libDir}/entry-js/images/`;
+    //DEPLOY ABOOK
+    // Entry.mediaFilePath = 'https://playentry.org/lib/entry-js/images';
     Entry.painterBaseUrl = `${libDir}/literallycanvas-mobile/lib/img`;
     Entry.defaultPath = defaultDir;
     Entry.soundPath = soundDir;
@@ -195,6 +198,7 @@ Entry.initialize_ = function() {
     this._destroyer.add(this.container);
 
     this.helper = new EntryBlockHelper();
+    this.modalHelper = new EntryModalHelper();
     this.youtube = new Entry.Youtube();
     this.modal = new Entry.Modal();
     // this.tvCast = new Entry.TvCast();

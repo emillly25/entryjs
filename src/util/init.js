@@ -358,6 +358,8 @@ Entry.createDom = function(container, type) {
 
             const topFloatingView = Entry.createElement('div');
             topFloatingView.addClass('entryTopFloatingView');
+            // topFloatingView.style.border = '5px solid red'; //상단메뉴바 영역
+            // topFloatingView.style.display = 'none';
             container.appendChild(topFloatingView);
 
             const sceneView = Entry.createElement('div');
@@ -367,6 +369,7 @@ Entry.createDom = function(container, type) {
 
             const blockCountViewerView = Entry.createElement('div');
             blockCountViewerView.addClass('entryBlockCountView');
+
             topFloatingView.appendChild(blockCountViewerView);
             this.blockCountViewerView = blockCountViewerView;
             this.blockCountViewer.generateView(this.blockCountViewerView, type);
@@ -381,7 +384,8 @@ Entry.createDom = function(container, type) {
             container.appendChild(engineContainer);
             const engineView = Entry.createElement('div');
             engineContainer.appendChild(engineView);
-
+            // engineContainer.style.border = '5px solid lime';
+            // engineContainer.style.display = 'none'; //왼쪽영역 숨기기
             this.engineContainer = engineContainer;
             this.engineView = engineView;
             this.engine.generateView(this.engineView, type);

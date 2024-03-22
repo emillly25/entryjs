@@ -57,6 +57,7 @@ Entry.Playground = class Playground {
         this.view_.addClass('entryPlayground');
         if (option === 'workspace' || option === 'playground') {
             this.view_.addClass('entryPlaygroundWorkspace');
+            // this.view_.style.border = '5px solid blue'; //우측 영역
 
             const tabView = Entry.createElement('div', 'entryCategoryTab')
                 .addClass('entryPlaygroundTabWorkspace')

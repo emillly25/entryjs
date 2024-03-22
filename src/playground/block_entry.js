@@ -284,6 +284,7 @@ function getBlocks() {
             events: {
                 mousedown: [
                     function() {
+                        console.log('1번일듯');
                         Entry.do('playgroundClickAddAIUtilizeBlock');
                     },
                 ],
@@ -312,28 +313,29 @@ function getBlocks() {
                 ],
             },
         },
-        arduino_lite_connect: {
-            skeleton: 'basic_button',
-            color: EntryStatic.colorSet.common.TRANSPARENT,
-            template: '%1',
-            isNotFor: ['arduinoLiteSupported'],
-            class: 'arduino_default',
-            params: [
-                {
-                    type: 'Text',
-                    text: Lang.Blocks.arduino_lite_connect,
-                    color: EntryStatic.colorSet.common.BUTTON,
-                    align: 'center',
-                },
-            ],
-            events: {
-                mousedown: [
-                    function() {
-                        Entry.do('playgroundClickAddHardwareLiteBlock');
-                    },
-                ],
-            },
-        },
+        //ABOOK (하드웨어블럭 - 브라우저 연결하기 버튼)
+        // arduino_lite_connect: {
+        //     skeleton: 'basic_button',
+        //     color: EntryStatic.colorSet.common.TRANSPARENT,
+        //     template: '%1',
+        //     isNotFor: ['arduinoLiteSupported'],
+        //     class: 'arduino_default',
+        //     params: [
+        //         {
+        //             type: 'Text',
+        //             text: Lang.Blocks.arduino_lite_connect,
+        //             color: EntryStatic.colorSet.common.BUTTON,
+        //             align: 'center',
+        //         },
+        //     ],
+        //     events: {
+        //         mousedown: [
+        //             function() {
+        //                 Entry.do('playgroundClickAddHardwareLiteBlock');
+        //             },
+        //         ],
+        //     },
+        // },
         arduino_lite_guide: {
             skeleton: 'clickable_text',
             skeletonOptions: {
@@ -553,32 +555,34 @@ function getBlocks() {
         //         ],
         //     },
         // },
-        arduino_download_source: {
-            skeleton: 'clickable_text',
-            skeletonOptions: {
-                box: {
-                    offsetX: 3,
-                },
-            },
-            isNotFor: ['arduinoDisconnected'],
-            color: EntryStatic.colorSet.common.TRANSPARENT,
-            params: [
-                {
-                    type: 'Text',
-                    text: Lang.Blocks.ARDUINO_download_source,
-                    color: EntryStatic.colorSet.common.TEXT,
-                    align: 'center',
-                },
-            ],
-            class: 'arduino_default',
-            events: {
-                mousedown: [
-                    function() {
-                        Entry.hw.downloadSource();
-                    },
-                ],
-            },
-        },
+
+        //엔트리 아두이노 소스 (다운로드 링크 텍스트)
+        // arduino_download_source: {
+        //     skeleton: 'clickable_text',
+        //     skeletonOptions: {
+        //         box: {
+        //             offsetX: 3,
+        //         },
+        //     },
+        //     isNotFor: ['arduinoDisconnected'],
+        //     color: EntryStatic.colorSet.common.TRANSPARENT,
+        //     params: [
+        //         {
+        //             type: 'Text',
+        //             text: Lang.Blocks.ARDUINO_download_source,
+        //             color: EntryStatic.colorSet.common.TEXT,
+        //             align: 'center',
+        //         },
+        //     ],
+        //     class: 'arduino_default',
+        //     events: {
+        //         mousedown: [
+        //             function() {
+        //                 Entry.hw.downloadSource();
+        //             },
+        //         ],
+        //     },
+        // },
         arduino_connected: {
             skeleton: 'basic_button',
             color: EntryStatic.colorSet.common.BUTTON_BACKGROUND,

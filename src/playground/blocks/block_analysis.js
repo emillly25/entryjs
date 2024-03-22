@@ -42,6 +42,7 @@ module.exports = {
                 events: {
                     mousedown: [
                         function() {
+                            console.log('데이터분석', Entry.playground.dataTable);
                             Entry.playground.dataTable.show();
                         },
                     ],

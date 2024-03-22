@@ -216,6 +216,7 @@
 
     c[COMMAND_TYPES.playgroundClickAddAIUtilizeBlock] = {
         do: function() {
+            console.log('응 여기임');
             Entry.dispatchEvent('openAIUtilizeBlockManager');
         },
         state: function() {
@@ -313,5 +314,4 @@
         undo: '',
         dom: ['playground', 'soundAddButton'],
     };
-
 })(Entry.Command);

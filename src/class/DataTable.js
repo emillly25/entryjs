@@ -167,9 +167,11 @@ class DataTable {
     };
 
     show(data) {
+        console.log('쇼쇼쇼', this.dataAnalytics);
         if (!this.dataAnalytics) {
             this.#generateView();
         }
+        console.log('else', { selectedIndex: this.#tables.legnth - 1, list: this.dataTables });
         this.dataAnalytics.show(
             data || { selectedIndex: this.#tables.legnth - 1, list: this.dataTables }
         );
@@ -213,6 +215,7 @@ class DataTable {
         const view = document.createElement('div');
         view.className = 'table-modal';
         document.body.appendChild(view);
+        console.log('툴', DataAnalytics);
         this.dataAnalytics = new DataAnalytics({ container: view, data: {}, isShow: false })
             .on('submit', this.saveTable)
             .on('alert', ({ message, title = Lang.DataAnalytics.max_row_count_error_title }) =>
@@ -229,6 +232,7 @@ class DataTable {
                 Entry.dispatchEvent('openTableManager');
             })
             .on('removeTable', this.removeTable);
+        console.log('제넷', this.dataAnalytics);
     }
 
     getTableJSON() {

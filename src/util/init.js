@@ -83,6 +83,10 @@ Entry.init = function(container, options) {
     Entry.addEventListener('showBlockHelper', () => {
         Entry.propertyPanel.select('helper');
     });
+    Entry.addEventListener('openExpansionBlockManager', () => {
+        console.log('이닛에서 확장블럭매니저 콜');
+        this.modal.showExpansionPopup();
+    });
 
     // if (Entry.getBrowserType().substr(0, 2) === 'IE' && !window.flashaudio) {
     //     createjs.FlashAudioPlugin.swfPath = `${this.mediaFilePath}media/`;
@@ -198,9 +202,10 @@ Entry.initialize_ = function() {
     this._destroyer.add(this.container);
 
     this.helper = new EntryBlockHelper();
-    this.modalHelper = new EntryModalHelper();
+    this.modalHelper = new EntryModalHelper(); //ABOOK
     this.youtube = new Entry.Youtube();
     this.modal = new Entry.Modal();
+
     // this.tvCast = new Entry.TvCast();
     // this.doneProject = new Entry.DoneProject();
 

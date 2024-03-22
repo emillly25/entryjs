@@ -45,10 +45,11 @@ class EntryCommander {
                 )
             );
         }
+        console.log('2번..?');
         const value = command.do.apply(this, args);
         this.doEvent.notify(commandType, args);
         const id = state ? state.id : null;
-
+        console.log('여기거쳐서');
         return {
             value,
             isPass: function(isPass, skipCount) {

@@ -564,8 +564,8 @@ Lang.Blocks = {
     ARDUINO_open_connector: '연결 프로그램 열기',
     ARDUINO_download_source: '• 엔트리 아두이노 소스',
     ARDUINO_reconnect: '하드웨어 연결하기',
-    arduino_noti_text:
-        '하드웨어 연결은 PC에서만 지원됩니다.\n브라우저로 연결할 때는\n연결 프로그램이 필요하지 않습니다.',
+    //ABOOK
+    arduino_noti_text: '하드웨어 연결은 PC에서만 지원됩니다.',
     arduino_lite_alert:
         '하드웨어를 찾을 수 없습니다.\n하드웨어에 펌웨어가 설치되었는지,\nPC와 하드웨어가 연결되어 있는지 \n다시 확인해 주세요.',
     arduino_lite_reconnect: '하드웨어 다시 연결',
@@ -2098,6 +2098,9 @@ Lang.Buttons = {
     basic_guide: '기본 사용 방법',
     apply: '적용하기',
     add: '추가하기',
+    add_message: '신호 추가',
+    add_variable: '변수 추가',
+    add_list: '리스트 추가',
     cancel: '취소',
     save: '확인',
     start: '시작',
